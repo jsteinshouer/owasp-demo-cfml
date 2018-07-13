@@ -1,0 +1,31 @@
+{
+    "datasources":{
+        "RecipeBox":{
+            "clob":"true",
+            "allowDrop":true,
+            "allowInsert":true,
+            "allowDelete":true,
+            "allowSelect":true,
+            "storage":"false",
+            "allowCreate":true,
+            "metaCacheTimeout":"60000",
+            "blob":"true",
+            "host":"${DB_HOST}",
+            "dbdriver":"MSSQL",
+            "allowUpdate":true,
+            "password":"${DB_PASSWORD}",
+            "connectionLimit":"100",
+            "allowAlter":true,
+            "database":"${DB_NAME}",
+            "dsn":"jdbc:sqlserver://{host}:{port}",
+            "port":"${DB_PORT}",
+            "class": "${DB_CLASS}" ,
+            "allowGrant":true,
+            "validate":"false",
+            "username":"${DB_USER}",
+            "allowRevoke":true,
+            "connectionTimeout":"0"
+        }
+    },
+    "secureProfileEnabled":false
+}

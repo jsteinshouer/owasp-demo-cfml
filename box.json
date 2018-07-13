@@ -1,0 +1,32 @@
+{
+    "name":"Recipe Box",
+    "author":"Jason Steinshouer",
+    "shortDescription":"OWASP Top 10 Demo App",
+    "private":true,
+    "dependencies":{
+        "coldbox":"4.1.0",
+        "cbstorages":"1.1.0",
+        "BCrypt":"^2.5.0-snapshot",
+        "nbvcxz-1.4.1":"jar:https://github.com/GoSimpleLLC/nbvcxz/releases/download/1.4.1/nbvcxz-1.4.1.jar",
+        "testbox":"^2.7.0+167",
+        "core-3.3.3":"jar:https://repo1.maven.org/maven2/com/google/zxing/core/3.3.3/core-3.3.3.jar",
+        "javase-3.3.3":"jar:https://repo1.maven.org/maven2/com/google/zxing/javase/3.3.3/javase-3.3.3.jar",
+        "flyway-core-4.2.0":"jar:https://repo1.maven.org/maven2/org/flywaydb/flyway-core/4.2.0/flyway-core-4.2.0.jar"
+    },
+    "devDependencies":{},
+    "installPaths":{
+        "coldbox":"coldbox/",
+        "cbstorages":"modules/cbstorages/",
+        "BCrypt":"modules/BCrypt/",
+        "nbvcxz-1.4.1":"lib/nbvcxz/",
+        "testbox":"testbox/",
+        "core-3.3.3":"lib/zxing/core-3.3.3/",
+        "javase-3.3.3":"lib/zxing/javase-3.3.3/",
+        "flyway-core-4.2.0":"lib/flyway-core-4.2.0"
+    },
+    "ignore":[
+        "**/.*",
+        "test",
+        "tests"
+    ]
+}

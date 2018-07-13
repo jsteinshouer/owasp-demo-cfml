@@ -1,0 +1,11 @@
+{
+    "engine":"adobe@11",
+    "app":{
+        "cfengine":"adobe@11"
+    },
+    "web":{
+        "rewrites":{
+            "enable":true
+        }
+    }
+}

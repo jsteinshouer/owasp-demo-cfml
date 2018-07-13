@@ -1,0 +1,17 @@
+.form-signin {
+    max-width: 400px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .input-group input#password {
+	 margin-top: 0;
+}
+
+.form-signin input,.form-signin button, .form-signin .input-group {
+    margin-top: 15px;
+}
+
+.pointer {
+	cursor: pointer;
+}
