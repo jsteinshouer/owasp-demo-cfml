@@ -3,7 +3,7 @@
 	<h2>Two-Factor Authentication Setup</h2>
 	<p>Scan this code on your device with your authenticator application.</p>
 	<img
-	src="data:image/*;base64,#toBase64( prc.qrCodeImage )#"
+	src="data:image/*;base64,#binaryEncode( prc.qrCodeImage, "base64" )#"
 	height="300"
 	/> <br />
 	<div class="col-sm-4">

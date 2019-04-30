@@ -56,7 +56,7 @@ component output="false" {
     * @param grace the amount of previous tokens to allow (1 means allow the current and last token value)
     * @return a boolean whether the token was valid or not
     */
-    public boolean function verify (required string key, required string userToken, numeric grace = 0)
+    public boolean function verify(required string key, required string userToken, numeric grace = 0)
     {
         for (var i = 0; i <= grace; i++)
         {
@@ -75,14 +75,14 @@ component output="false" {
     * @param offset the number of intervals from the current one to use (defaults to the current time interval)
     * @return a string containing the token for the specified offset interval
     */
-    public string function getOneTimePassword (required string base32Secret, numeric offset = 0)
+    public string function getOneTimePassword(required string base32Secret, numeric offset = 0)
     {
         var intervals = JavaCast("long", Int((getCurrentTime() / 1000) / 30) + arguments.offset);
         return getOneTimeToken(arguments.base32Secret, intervals);
     }
 
     /**
-    * Returns a URL that can be used in a QR code with the Google Authenticator app
+    * Returns a buffered image of a QR code that can be used with the Google Authenticator app
     *
     * @param email the email address of the user account
     * @param key the Base32 encoded secret key to use in the code
@@ -96,9 +96,8 @@ component output="false" {
         var QRCodeWriter = createObject("java","com.google.zxing.qrcode.QRCodeWriter").init();
         var matrixToImageWriter = createObject("java","com.google.zxing.client.j2se.MatrixToImageWriter");
         var QRCode = QRCodeWriter.encode( data, barcodeFormat.QR_CODE, "400", "400" );
-        var QRCodeImage = imageNew( matrixToImageWriter.toBufferedImage( QRcode ) );
 
-        return QRCodeImage;
+        return matrixToImageWriter.toBufferedImage( QRcode );
 
     }
 
