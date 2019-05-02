@@ -56,7 +56,10 @@ component output="false" singleton="true"  {
 			}
 			else {
 				sessionStorage.setVar( "isLoggedIn",true );
+				/* Rotate the session to avoid session fixation attacks*/
+				sessionRotate();
 			}
+
 
 			isValid = true;
 		}
@@ -111,6 +114,7 @@ component output="false" singleton="true"  {
 	public void function logout() {
 		//logger.info("User logout for #getLoggedInUser().getUsername()#");
 		sessionStorage.clearAll();
+		sessionInvalidate();
 	}
 
 	/**
@@ -128,6 +132,8 @@ component output="false" singleton="true"  {
 		
 		if ( isValid ) {
 			sessionStorage.setVar("isLoggedIn",true);
+			/* Rotate the session to avoid session fixation attacks*/
+			sessionRotate();
 		}
 
 		return isValid;
