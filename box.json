@@ -22,7 +22,7 @@
         "testbox":"testbox/",
         "core-3.3.3":"lib/zxing/core-3.3.3/",
         "javase-3.3.3":"lib/zxing/javase-3.3.3/",
-        "flyway-core-4.2.0":"lib/flyway-core-4.2.0"
+        "flyway-core-4.2.0":"lib/flyway-core-4.2.0/"
     },
     "ignore":[
         "**/.*",

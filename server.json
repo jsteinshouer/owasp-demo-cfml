@@ -1,7 +1,6 @@
 {
-    "engine":"adobe@11",
     "app":{
-        "cfengine":"adobe@11"
+        "cfengine":"${CFENGINE:adobe@2018}"
     },
     "web":{
         "rewrites":{
