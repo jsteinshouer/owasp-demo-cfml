@@ -73,7 +73,7 @@ component{
 
 		// custom settings
 		settings = {
-			PASSWORD_BLACKLIST_FILE = javaSystem.getProperty("PASSWORD_BLACKLIST_FILE", "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10k-most-common.txt"),
+			BLOCKED_PASSWORDS_FILE = javaSystem.getProperty("BLOCKED_PASSWORDS_FILE", "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10k-most-common.txt"),
 			RECAPTCHA_ENABLED = javaSystem.getProperty("RECAPTCHA_ENABLED", false),
 			RECAPTCHA_SITE_KEY = javaSystem.getProperty("RECAPTCHA_SITE_KEY", ""),
 			RECAPTCHA_SECRET_KEY = javaSystem.getProperty("RECAPTCHA_SECRET_KEY", "")

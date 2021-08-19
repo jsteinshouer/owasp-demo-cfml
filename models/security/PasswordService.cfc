@@ -3,7 +3,7 @@
 */
 component singleton {
 
-	property name="PASSWORD_BLACKLIST";
+	property name="BLOCKED_PASSWORDS";
 	property name="bcrypt" inject="BCrypt@BCrypt";
 	property name="wirebox" inject="wirebox";
 	property name="passwordEstimator" inject="security.PasswordStrengthEstimator";
@@ -12,11 +12,11 @@ component singleton {
 	/**
 	 * Constructor
 	 * 
-	 * @passwordBlacklistFile.inject coldbox:setting:PASSWORD_BLACKLIST_FILE
+	 * @blockedPasswordsFile.inject coldbox:setting:BLOCKED_PASSWORDS_FILE
 	 */ 
-	public PasswordService function init( required string passwordBlacklistFile ) {
+	public PasswordService function init( required string blockedPasswordsFile ) {
 
-		PASSWORD_BLACKLIST = loadBlacklist( arguments.passwordBlacklistFile );
+		BLOCKED_PASSWORDS = loadBlocklist( arguments.blockedPasswordsFile );
 
 		return this;
 	}
@@ -39,11 +39,11 @@ component singleton {
 
 
 	/**
-	* Check if a password is blacklisted
+	* Check if a password is blocklisted
 	*/
-	public boolean function isBlacklisted( required string password ) {
+	public boolean function isBlocked( required string password ) {
 
-		return PASSWORD_BLACKLIST.find( lcase( arguments.password ) );
+		return BLOCKED_PASSWORDS.find( lcase( arguments.password ) );
 	}
 
 	/**
@@ -71,8 +71,8 @@ component singleton {
 			validationResult.addError(message);
 		}
 
-		/* Not on the blacklist */
-		if ( isBlacklisted( arguments.password ) ) {
+		/* Not on the blocklist */
+		if ( isBlocked( arguments.password ) ) {
 			validationResult.addError("Your password is not allowed because it is too common!");
 		}
 
@@ -80,58 +80,58 @@ component singleton {
 	}
 
 	/**
-	* Load a blacklist
+	* Load a blocklist
 	*/
-	private array function loadBlacklist( required string passwordBlacklistFile ) {
-		var blacklist = [];
+	private array function loadBlocklist( required string blockedPasswordsFile ) {
+		var blocklist = [];
 
-		if ( arguments.passwordBlacklistFile.len() == 0 ) {
-			blacklist = loadBlacklistFromURL( "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10k-most-common.txt" );
+		if ( arguments.blockedPasswordsFile.len() == 0 ) {
+			blocklist = loadBlocklistFromURL( "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10k-most-common.txt" );
 		}
-		else if ( isValid( "URL", arguments.passwordBlacklistFile ) ) {
-			blacklist = loadBlacklistFromURL( arguments.passwordBlacklistFile );
+		else if ( isValid( "URL", arguments.blockedPasswordsFile ) ) {
+			blocklist = loadBlocklistFromURL( arguments.blockedPasswordsFile );
 		}
-		else if ( fileExists( arguments.passwordBlacklistFile ) ){
-			blacklist = loadBlacklistFromFile( arguments.passwordBlacklistFile );
+		else if ( fileExists( arguments.blockedPasswordsFile ) ){
+			blocklist = loadBlocklistFromFile( arguments.blockedPasswordsFile );
 		}
 		
-		return blacklist;
+		return blocklist;
 	}
 
 	/**
-	* Load a blacklist from file
+	* Load a blocklist from file
 	*/
-	private array function loadBlacklistFromFile( required string file ) {
-		var blacklist = [];
+	private array function loadBlocklistFromFile( required string file ) {
+		var blocklist = [];
 
 		try {
-			blacklist = listToArray( 
+			blocklist = listToArray( 
 				fileRead( arguments.file ), 
 				chr(10) & chr(13) 
 			);
 		}
 		catch(any e) { }
 		
-		return blacklist;
+		return blocklist;
 	}
 
 	/**
-	* Load a blacklist from url
+	* Load a blocklist from url
 	*/
-	private array function loadBlacklistFromURL( required string url ) {
-		var blacklist = [];
+	private array function loadBlocklistFromURL( required string url ) {
+		var blocklist = [];
 		var httpResult = "";
 
 		try {
 			cfhttp( url = arguments.url, result = "httpResult"  );
-			blacklist = listToArray( 
+			blocklist = listToArray( 
 				httpResult.fileContent, 
 				chr(10) & chr(13) 
 			);
 		}
 		catch(any e) {}
 		
-		return blacklist;
+		return blocklist;
 		
 	}
 
